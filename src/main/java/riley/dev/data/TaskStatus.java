@@ -1,4 +1,4 @@
-package riley.dev;
+package riley.dev.data;
 
 public enum TaskStatus 
 {

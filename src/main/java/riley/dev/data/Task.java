@@ -1,4 +1,4 @@
-package riley.dev;
+package riley.dev.data;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +13,13 @@ public class Task
     public Task()
     {
 
+    }
+
+    public Task(String taskName)
+    {
+        this.taskName = taskName;
+        this.startTime = LocalDateTime.now();
+        this.status = TaskStatus.IN_PROGRESS;
     }
 
     public Task(String taskName, Category category)
@@ -46,4 +53,15 @@ public class Task
 
     public TaskStatus getStatus() { return this.status; }
     public void setStatus(TaskStatus status) { this.status = status; }
+
+    public String toString()
+    {
+        return "Task{" + 
+                "Task Name: " + this.taskName + "\n" + 
+                "Category: " + this.category + "\n" + 
+                "Start Time: " + this.startTime + "\n" +
+                "End Time: " + this.endTime + "\n" + 
+                "Status: " + this.status + 
+                "}";
+    }
 }

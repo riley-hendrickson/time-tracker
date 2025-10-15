@@ -1,8 +1,10 @@
-package riley.dev;
+package riley.dev.data;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+
+import riley.dev.Log;
 
 public class CurrentTasks 
 {
