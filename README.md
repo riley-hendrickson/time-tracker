@@ -4,6 +4,7 @@
 
 ### Start logging time
 `time-tracker <task-name> start`
+
 `time-tracker <task-name> <category-name> start`
 
 Note: If the task name is already in use, this will result in no operation
