@@ -15,13 +15,21 @@ public class Task
 
     }
 
-    public Task(String taskName, Category category, LocalDateTime startTime, LocalDateTime endTime, TaskStatus status)
+    public Task(String taskName, Category category)
+    {
+        this.taskName = taskName;
+        this.category = category;
+        this.startTime = LocalDateTime.now();
+        this.status = TaskStatus.IN_PROGRESS;
+    }
+
+    public Task(String taskName, Category category, LocalDateTime startTime, LocalDateTime endTime)
     {
         this.taskName = taskName;
         this.category = category;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.status = status;
+        this.status = TaskStatus.IN_PROGRESS;
     }
 
     public String getTaskName() { return this.taskName; }
