@@ -20,7 +20,6 @@ public class CurrentTasks
         if(!currentTasks.containsKey(task.getTaskName()))
         {
             currentTasks.put(task.getTaskName(), task);
-            System.out.println(task);
         }
         else Log.log("Task is already being tracked.");
     }
@@ -36,7 +35,7 @@ public class CurrentTasks
         currentTask.setEndTime(LocalDateTime.now());
         currentTask.setStatus(TaskStatus.COMPLETE);
     }
-    // COME BACK TO THIS! CONSIDER USING STRINGBUILDER TO ITERATE OVER EACH TASK IN THE MAP AND CALL ITS TO STRING METHOD
+    
     @Override
     public String toString()
     {

@@ -35,5 +35,6 @@ public class TimeTracker
 
             }
         }
+        System.out.println(currentTasks);
     }
 }

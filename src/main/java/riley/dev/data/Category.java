@@ -22,4 +22,10 @@ public class Category
 
     public int getTotalTime() { return totalTime; }
     public void setTotalTime(int totalTime) { this.totalTime = totalTime; }
+
+    @Override
+    public String toString()
+    {
+        return this.category;
+    }
 }

@@ -57,7 +57,7 @@ public class Task
     @Override
     public String toString()
     {
-        return "Task{" + 
+        return "{" + 
                 "Task Name: " + this.taskName + "\n" + 
                 "Category: " + this.category + "\n" + 
                 "Start Time: " + this.startTime + "\n" +
