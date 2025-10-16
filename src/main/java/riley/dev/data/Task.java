@@ -54,6 +54,7 @@ public class Task
     public TaskStatus getStatus() { return this.status; }
     public void setStatus(TaskStatus status) { this.status = status; }
 
+    @Override
     public String toString()
     {
         return "Task{" + 
