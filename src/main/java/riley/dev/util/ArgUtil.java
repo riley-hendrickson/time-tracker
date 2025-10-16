@@ -1,17 +1,37 @@
 package riley.dev.util;
 
 import riley.dev.Log;
+import riley.dev.data.Category;
 
 public class ArgUtil 
 {
-    public Args parseArgs(String[] args)
+    public static Args parseArgs(String[] args)
     {
         if(!validate(args))throw new RuntimeException("Invalid Arguments");
         Args arguments = new Args(args);
-        return null;
+
+        String command = args[0];
+        switch(command)
+        {
+            case "start":
+                arguments.setCommand(Commands.TASK_START);
+                arguments.setTaskName(args[1]);
+                arguments.setCategoryName(args.length == 3? args[2] : Category.NONE);
+                break;
+            case "stop":
+                arguments.setCommand(Commands.TASK_STOP);
+                arguments.setTaskName(args[1]);
+                break;
+            case "report":
+                if(args[1].equals("tasks")) arguments.setCommand(Commands.REPORT_TASKS);
+                else if(args[1].equals("category")) arguments.setCommand(Commands.REPORT_CATEGORIES);
+                else Log.log("Invalid command. See README for more details...");
+                break;
+        }
+        return arguments;
     }
 
-    public boolean validate(String[] args)
+    private static boolean validate(String[] args)
     {
         if(args.length < 2)
         {
