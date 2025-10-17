@@ -40,11 +40,11 @@ public class TimeTracker
             }
             case REPORT_TASKS ->
             {
-
+                currentTasks.reportTasks();
             }
             case REPORT_CATEGORIES ->
             {
-
+                currentTasks.reportCategories();
             }
         }
         // save currently stored tasks to output file to be retrieved in later iterations

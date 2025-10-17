@@ -48,13 +48,23 @@ public class Task
     public TaskStatus getStatus() { return this.status; }
     public void setStatus(TaskStatus status) { this.status = status; }
 
+    // method to format duration in a more readable way than its toString method
+    private String formatDuration(Duration d)
+    {
+        if(d == null || d.isZero()) return "00:00:00";
+        long hours = d.toHours();
+        long minutes = d.minusHours(hours).toMinutes();
+        long seconds = d.minusHours(hours).minusMinutes(minutes).getSeconds();
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
     @Override
     public String toString()
     {
         return "{" + 
                 "Task Name: " + this.taskName + "\n" + 
                 "Category: " + this.category + "\n" + 
-                "Total Elapsed Time:" + this.totalElapsed + "\n" +
+                "Total Elapsed Time:" + formatDuration(this.totalElapsed) + "\n" +
                 "Status: " + this.status + 
                 "}";
     }

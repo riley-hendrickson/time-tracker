@@ -43,6 +43,7 @@ public class CurrentTasks
 
     public void stopTask(String taskName)
     {
+        if(currentTasks.get(taskName).getStatus() == TaskStatus.COMPLETE) return;
         Task currentTask = currentTasks.get(taskName);
         if(currentTask == null) 
         {
@@ -52,6 +53,16 @@ public class CurrentTasks
         // increment totalElapsed of the current task and set its status to complete
         currentTask.setTotalElapsed(currentTask.getTotalElapsed().plus(Duration.between(currentTask.getCurrentStart(), Instant.now())));
         currentTask.setStatus(TaskStatus.COMPLETE);
+    }
+
+    public void reportTasks() { for(Task currentTask : currentTasks.values()) { System.out.println(currentTask); } }
+
+    public void reportCategories()
+    {
+        for(Task currentTask : currentTasks.values())
+        {
+
+        }
     }
 
     @Override
