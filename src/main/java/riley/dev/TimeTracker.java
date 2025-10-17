@@ -13,20 +13,20 @@ import riley.dev.util.FilesUtil;
 @SuppressWarnings("unused")
 public class TimeTracker 
 {
-    //TO DO: Debug getSavedTasks and saveTasksToFile, then handle reporting 
-
+    //TO DO: handle reporting 
     public static void main(String[] args) 
     {
-        // get current tasks from file
+        // get current tasks from output file
         CurrentTasks currentTasks;
         try
         {
             currentTasks = FilesUtil.getSavedTasks();
         } catch (IOException e)
         {
-            Log.log("Caught an exception while trying to receive saved tasks");
+            Log.log("Caught an exception while trying to read saved tasks");
             currentTasks = new CurrentTasks();
         }
+        // parse input arguments
         Args parsedArguments = ArgUtil.parseArgs(args);
         switch(parsedArguments.getCommand())
         {
@@ -40,13 +40,14 @@ public class TimeTracker
             }
             case REPORT_TASKS ->
             {
-                
+
             }
             case REPORT_CATEGORIES ->
             {
 
             }
         }
+        // save currently stored tasks to output file to be retrieved in later iterations
         try { FilesUtil.saveTasksToFile(currentTasks); } 
         catch (IOException e) { Log.log("Exception caught while trying to save current tasks to file");}
     }

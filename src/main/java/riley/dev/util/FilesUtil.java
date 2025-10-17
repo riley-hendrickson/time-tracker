@@ -17,10 +17,12 @@ import riley.dev.data.TaskStatus;
 
 public class FilesUtil 
 {
+    // output file to store saved tasks
     public static final String PATH = "task-info.csv";
-
+    // method to retrieve previously saved tasks, throws an IOException if there was an error opening the file 
     public static CurrentTasks getSavedTasks() throws IOException
     {
+        // if the file doesn't exist yet, create it
         Path filepath = Paths.get(PATH);
         if(Files.notExists(filepath))
         {
@@ -39,15 +41,15 @@ public class FilesUtil
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
                 return new CurrentTasks(taskMap);
     }
-
+    // method to save the current state of the currentTasks map to an output csv file so we can retrieve that data in later iterations of the program
     public static void saveTasksToFile(CurrentTasks tasks) throws IOException
     {
+        // if the file doesn't yet exist, create it
         Path filePath = Paths.get(PATH);
         if(Files.notExists(filePath))
         {
             Files.createFile(filePath);
         }
-
         List<String> lines = tasks.getCurrentTasks()
                 .values()
                 .stream()
