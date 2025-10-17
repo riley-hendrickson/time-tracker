@@ -1,6 +1,7 @@
 package riley.dev.data;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -26,15 +27,21 @@ public class CurrentTasks
 
     public void startTask(Task task)
     {
-        // only add the task if it doesn't already exist
+        // stop any currently running tasks
+        for(Task currentTask : currentTasks.values())
+        {
+            if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) stopTask(currentTask.getTaskName());
+        }
+        // add the task to the map if it doesn't already exist
         if(!currentTasks.containsKey(task.getTaskName()))
         {
             currentTasks.put(task.getTaskName(), task);
         }
-        else Log.log("Task is already being tracked.");
+        // start the task
+        task.setCurrentStart(Instant.now());
     }
 
-    public void completeTask(String taskName)
+    public void stopTask(String taskName)
     {
         Task currentTask = currentTasks.get(taskName);
         if(currentTask == null) 
@@ -42,7 +49,8 @@ public class CurrentTasks
             Log.log("No Tasks found. Verify Task Name");
             return;
         }
-        currentTask.setEndTime(LocalDateTime.now());
+        // increment totalElapsed of the current task and set its status to complete
+        currentTask.setTotalElapsed(currentTask.getTotalElapsed().plus(Duration.between(currentTask.getCurrentStart(), Instant.now())));
         currentTask.setStatus(TaskStatus.COMPLETE);
     }
 

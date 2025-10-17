@@ -36,7 +36,7 @@ public class TimeTracker
             }
             case TASK_STOP ->
             {
-                currentTasks.completeTask(parsedArguments.getTaskName());
+                currentTasks.stopTask(parsedArguments.getTaskName());
             }
             case REPORT_TASKS ->
             {

@@ -1,41 +1,42 @@
 package riley.dev.data;
 
-import java.time.LocalDateTime;
+import java.time.Duration;
+import java.time.Instant;
 
 public class Task 
 {
     private String taskName;
     private Category category;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Instant currentStart;
+    private Duration totalElapsed;
     private TaskStatus status;
 
     public Task()
     {
 
     }
-
-    public Task(String taskName)
-    {
-        this.taskName = taskName;
-        this.startTime = LocalDateTime.now();
-        this.status = TaskStatus.IN_PROGRESS;
-    }
+// dont need this constructor?
+    // public Task(String taskName)
+    // {
+    //     this.taskName = taskName;
+    //     this.totalElapsed = Duration.ZERO;
+    //     this.status = TaskStatus.IN_PROGRESS;
+    // }
 
     public Task(String taskName, Category category)
     {
         this.taskName = taskName;
         this.category = category;
-        this.startTime = LocalDateTime.now();
+        this.totalElapsed = Duration.ZERO;
         this.status = TaskStatus.IN_PROGRESS;
     }
 
-    public Task(String taskName, Category category, LocalDateTime startTime, LocalDateTime endTime, TaskStatus status)
+    public Task(String taskName, Category category, Duration totalElapsed, TaskStatus status)
     {
         this.taskName = taskName;
         this.category = category;
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.currentStart = Instant.now();
+        this.totalElapsed = totalElapsed;
         this.status = status;
     }
 
@@ -45,11 +46,11 @@ public class Task
     public Category getCategory() { return this.category; }
     public void setCategory(Category category) { this.category = category; }
 
-    public LocalDateTime getStartTime() { return this.startTime; }
-    public void setStartTime(LocalDateTime startTime) { this.startTime = startTime;}
+    public Instant getCurrentStart() { return currentStart; }
+    public void setCurrentStart(Instant currentStart) { this.currentStart = currentStart; }
 
-    public LocalDateTime getEndTime() { return this.endTime; }
-    public void setEndTime(LocalDateTime endTime) { this.endTime = endTime; }
+    public Duration getTotalElapsed() { return totalElapsed; }
+    public void setTotalElapsed(Duration totalElapsed) { this.totalElapsed = totalElapsed; }
 
     public TaskStatus getStatus() { return this.status; }
     public void setStatus(TaskStatus status) { this.status = status; }
@@ -60,8 +61,7 @@ public class Task
         return "{" + 
                 "Task Name: " + this.taskName + "\n" + 
                 "Category: " + this.category + "\n" + 
-                "Start Time: " + this.startTime + "\n" +
-                "End Time: " + this.endTime + "\n" + 
+                "Total Elapsed Time:" + this.totalElapsed + "\n" +
                 "Status: " + this.status + 
                 "}";
     }
@@ -71,8 +71,7 @@ public class Task
         return 
         this.taskName + "," +
         this.category + "," + 
-        this.startTime+ "," + 
-        this.endTime + "," + 
+        this.totalElapsed + "," +
         this.status;
     }
 }

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -30,13 +30,12 @@ public class FilesUtil
         }
         Map<String, Task> taskMap = Files.lines(filepath)
                 .map(line -> line.split(","))
-                .filter(array -> array.length == 5)
+                .filter(array -> array.length == 4)
                 .map(array -> new Task(
                         array[0],
                         new Category(array[1]),
-                        LocalDateTime.parse(array[2]),
-                        array[3].equals("null") || array[3].isBlank() ? null : LocalDateTime.parse(array[3]),
-                        TaskStatus.valueOf(array[4])
+                        array[2].equals("null") || array[2].isBlank() ? Duration.ZERO : Duration.parse(array[2]),
+                        TaskStatus.valueOf(array[3])
                 ))
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
                 return new CurrentTasks(taskMap);
