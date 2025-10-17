@@ -40,7 +40,7 @@ public class TimeTracker
             }
             case REPORT_TASKS ->
             {
-
+                
             }
             case REPORT_CATEGORIES ->
             {

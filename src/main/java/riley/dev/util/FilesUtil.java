@@ -34,7 +34,7 @@ public class FilesUtil
                         array[0],
                         new Category(array[1]),
                         LocalDateTime.parse(array[2]),
-                        array[3] == null || array[3].isBlank() ? null : LocalDateTime.parse(array[3]),
+                        array[3].equals("null") || array[3].isBlank() ? null : LocalDateTime.parse(array[3]),
                         TaskStatus.valueOf(array[4])
                 ))
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
