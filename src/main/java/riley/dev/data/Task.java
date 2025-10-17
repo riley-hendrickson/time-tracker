@@ -30,13 +30,13 @@ public class Task
         this.status = TaskStatus.IN_PROGRESS;
     }
 
-    public Task(String taskName, Category category, LocalDateTime startTime, LocalDateTime endTime)
+    public Task(String taskName, Category category, LocalDateTime startTime, LocalDateTime endTime, TaskStatus status)
     {
         this.taskName = taskName;
         this.category = category;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.status = TaskStatus.IN_PROGRESS;
+        this.status = status;
     }
 
     public String getTaskName() { return this.taskName; }
@@ -64,5 +64,15 @@ public class Task
                 "End Time: " + this.endTime + "\n" + 
                 "Status: " + this.status + 
                 "}";
+    }
+
+    public String toCSVFormat()
+    {
+        return 
+        this.taskName + "," +
+        this.category + "," + 
+        this.startTime+ "," + 
+        this.endTime + "," + 
+        this.status;
     }
 }

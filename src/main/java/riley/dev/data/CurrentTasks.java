@@ -14,6 +14,16 @@ public class CurrentTasks
     public Map<String, Task> getCurrentTasks() { return this.currentTasks; }
     public void setCurrentTasks(Map<String, Task> currentTasks) { this.currentTasks = currentTasks; }
 
+    public CurrentTasks()
+    {
+        
+    }
+
+    public CurrentTasks(Map<String, Task> taskMap)
+    {
+        this.currentTasks = taskMap;
+    }
+
     public void startTask(Task task)
     {
         // only add the task if it doesn't already exist
@@ -35,7 +45,7 @@ public class CurrentTasks
         currentTask.setEndTime(LocalDateTime.now());
         currentTask.setStatus(TaskStatus.COMPLETE);
     }
-    
+
     @Override
     public String toString()
     {
