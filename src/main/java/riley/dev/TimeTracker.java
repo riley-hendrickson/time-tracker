@@ -13,7 +13,7 @@ import riley.dev.util.FilesUtil;
 @SuppressWarnings("unused")
 public class TimeTracker 
 {
-    
+    //TO DO: Debug getSavedTasks and saveTasksToFile, then handle reporting 
 
     public static void main(String[] args) 
     {
@@ -40,7 +40,7 @@ public class TimeTracker
             }
             case REPORT_TASKS ->
             {
-                
+
             }
             case REPORT_CATEGORIES ->
             {
