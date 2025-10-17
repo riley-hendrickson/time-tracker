@@ -15,14 +15,7 @@ public class Task
     {
 
     }
-// dont need this constructor?
-    // public Task(String taskName)
-    // {
-    //     this.taskName = taskName;
-    //     this.totalElapsed = Duration.ZERO;
-    //     this.status = TaskStatus.IN_PROGRESS;
-    // }
-
+    // constructor to be used when creating new tasks
     public Task(String taskName, Category category)
     {
         this.taskName = taskName;
@@ -30,7 +23,7 @@ public class Task
         this.totalElapsed = Duration.ZERO;
         this.status = TaskStatus.IN_PROGRESS;
     }
-
+    // constructor to be used when retrieving previously saved tasks from output file
     public Task(String taskName, Category category, Duration totalElapsed, TaskStatus status)
     {
         this.taskName = taskName;
