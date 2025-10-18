@@ -34,7 +34,7 @@ public class FilesUtil
                 .map(array -> new Task(
                         array[0],
                         new Category(array[1]),
-                        array[2].equals("null") || array[2].isBlank() ? Duration.ZERO : Duration.parse(array[2]),
+                        array[2].equals("null") || array[2].equals("00:00:00") ? Duration.ZERO : Duration.parse(array[2]),
                         TaskStatus.valueOf(array[3])
                 ))
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
