@@ -7,7 +7,7 @@
 
 `time-tracker start <task-name> <category-name>`
 
-Note: If the task name is already in use, this will result in no operation
+Note: Tasks are identified by task name, so attempting to start a new task with the same name as another will cause the existing task with the given name to be started once more, and no new task created.
 
 ### Stop logging time
 `time-tracker stop <task-name>`
