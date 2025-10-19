@@ -2,7 +2,7 @@
 
 ## Usage
 
-### Start logging time
+### Start Logging Tasks
 `time-tracker start <task-name>`
 
 - Starts a new task with the given name and begins tracking elapsed time on this task
@@ -15,10 +15,10 @@
 - Tasks are identified by task name, so attempting to start a new task with the same name as another will cause the existing task with the given name to be started once more, and no new task created.
 - Starting a new task automatically stops any tasks currently in progress, so only one task is being worked on and tracked at a time.
 
-### Stop logging time
+### Stop Currently Logged Tasks
 `time-tracker stop <task-name>`
 
-### Display current logged times
+### Display Current Logged Tasks
 `time-tracker report tasks`
 
 - Shows all current tasks and their associated time elapsed
