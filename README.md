@@ -5,11 +5,13 @@
 ### Start logging time
 `time-tracker start <task-name>`
 
-    - Starts a new task with the given name and begins tracking elapsed time on this task
+- Starts a new task with the given name and begins tracking elapsed time on this task
+
 `time-tracker start <task-name> <category-name>`
 
-    - Starts a new task with the given name and category and begins tracking elapsed time on this task
-Notes: 
+- Starts a new task with the given name and category and begins tracking elapsed time on this task
+
+#### Note: 
 - Tasks are identified by task name, so attempting to start a new task with the same name as another will cause the existing task with the given name to be started once more, and no new task created.
 - Starting a new task automatically stops any tasks currently in progress, so only one task is being worked on and tracked at a time.
 
@@ -19,11 +21,11 @@ Notes:
 ### Display current logged times
 `time-tracker report tasks`
 
-    - Shows all current tasks and their associated time elapsed
+- Shows all current tasks and their associated time elapsed
 
 `time-tracker report category`
 
-    - Shows all the current categories and their associated time elapsed
+- Shows all the current categories and their associated time elapsed
 
 ## Example Output
 ### After Running First Set of Commands:
