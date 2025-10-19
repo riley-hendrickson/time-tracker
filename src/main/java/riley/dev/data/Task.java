@@ -11,6 +11,8 @@ public class Task
     private Duration totalElapsed;
     private TaskStatus status;
 
+    public static final int NUM_SAVED_FIELDS = 5;
+
     public Task()
     {
 
@@ -33,6 +35,7 @@ public class Task
         this.status = status;
     }
 
+    // getters and setters for each member variable
     public String getTaskName() { return this.taskName; }
     public void setTaskName(String taskName) { this.taskName = taskName; }
 
@@ -78,7 +81,8 @@ public class Task
                 "Status: " + this.status + 
                 "}";
     }
-
+    // method to return a string that represents the format we will be saving tasks to in our output file, so we have a standardized way to parse
+    // and retrieve previously saved tasks in later iterations
     public String toCSVFormat()
     {
         return 

@@ -18,8 +18,16 @@ import riley.dev.data.TaskStatus;
 
 public class FilesUtil 
 {
+    // intended order of task fields in the saved output file, see Task.toCSVFormat() 
+    private static final int TASK_NAME = 0;
+    private static final int TASK_CATEGORY = 1;
+    private static final int TASK_STARTING_TIME = 2;
+    private static final int TASK_ELAPSED_TIME = 3;
+    private static final int TASK_STATUS = 4;
+
     // output file to store saved tasks
     public static final String PATH = "task-info.csv";
+
     // method to retrieve previously saved tasks, throws an IOException if there was an error opening the file 
     public static CurrentTasks getSavedTasks() throws IOException
     {
@@ -31,13 +39,13 @@ public class FilesUtil
         }
         Map<String, Task> taskMap = Files.lines(filepath)
                 .map(line -> line.split(","))
-                .filter(array -> array.length == 5)
+                .filter(array -> array.length == Task.NUM_SAVED_FIELDS)
                 .map(array -> new Task(
-                        array[0],
-                        new Category(array[1]),
-                        Instant.parse(array[2]),
-                        array[3].equals("null") || array[3].equals("00:00:00") ? Duration.ZERO : Duration.parse(array[3]),
-                        TaskStatus.valueOf(array[4])
+                        array[TASK_NAME],
+                        new Category(array[TASK_CATEGORY]),
+                        Instant.parse(array[TASK_STARTING_TIME]),
+                        array[TASK_ELAPSED_TIME].equals("null") || array[TASK_ELAPSED_TIME].equals("00:00:00") ? Duration.ZERO : Duration.parse(array[TASK_ELAPSED_TIME]),
+                        TaskStatus.valueOf(array[TASK_STATUS])
                 ))
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
                 return new CurrentTasks(taskMap);

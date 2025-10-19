@@ -11,6 +11,7 @@ import riley.dev.Log;
 
 public class CurrentTasks 
 {
+    // it's okay to initialize in the declaration here because this class will function as a singleton
     private Map<String, Task> currentTasks = new HashMap<>();
     private Map<String, Duration> categories = new HashMap<>();
 
@@ -47,6 +48,7 @@ public class CurrentTasks
 
     public void stopTask(String taskName)
     {
+        // if the task is already stopped, return
         if(currentTasks.get(taskName).getStatus() == TaskStatus.COMPLETE) return;
         Task currentTask = currentTasks.get(taskName);
         if(currentTask == null) 
@@ -54,7 +56,7 @@ public class CurrentTasks
             Log.log("No Tasks found. Verify Task Name");
             return;
         }
-        // increment totalElapsed of the current task and set its status to complete
+        // update totalElapsed of the current task and set its status to complete
         currentTask.setTotalElapsed(currentTask.getTotalElapsed().plus(Duration.between(currentTask.getCurrentStart(), Instant.now())));
         currentTask.setStatus(TaskStatus.COMPLETE);
     }
@@ -63,8 +65,10 @@ public class CurrentTasks
     { 
         for(Task currentTask : currentTasks.values()) 
         {
+            // update the elapsed time if the task is in progress, without this line elapsed time is only computed when a task is completed,
+            // but elapsed time is relevant information required in a report
             if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) currentTask.updateElapsedTime();
-            System.out.println(currentTask);
+            Log.log(currentTask.toString());
         } 
     }
 
@@ -72,7 +76,10 @@ public class CurrentTasks
     {
         for(Task currentTask : currentTasks.values())
         {
+            // update the elapsed time if the task is in progress, without this line elapsed time is only computed when a task is completed,
+            // but elapsed time is relevant information required in a report
             if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) currentTask.updateElapsedTime();
+            // update stored times by category in the categories map
             if(categories.containsKey(currentTask.getCategoryName()))
             {
                 categories.put(currentTask.getCategoryName(), categories.get(currentTask.getCategoryName()).plus(currentTask.getTotalElapsed()));
@@ -82,9 +89,10 @@ public class CurrentTasks
                 categories.put(currentTask.getCategoryName(), currentTask.getTotalElapsed());
             }
         }
+        // iterate through the categories map so we can display elapsed time by category
         for(Entry<String, Duration> e : categories.entrySet())
         {
-            System.out.println("Total Time Spent on Tasks in " + e.getKey() + " Category: " + formatDuration(e.getValue()));
+            Log.log("Total Time Spent on Tasks in " + e.getKey() + " Category: " + formatDuration(e.getValue()));
         }
     }
 

@@ -10,7 +10,6 @@ import riley.dev.util.Args;
 import riley.dev.util.FilesUtil;
 public class TimeTracker 
 {
-    //TO DO: handle reporting 
     public static void main(String[] args) 
     {
         // get current tasks from output file
