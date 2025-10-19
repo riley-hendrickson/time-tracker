@@ -1,16 +1,13 @@
 package riley.dev;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import riley.dev.data.Category;
 import riley.dev.data.CurrentTasks;
 import riley.dev.data.Task;
 import riley.dev.util.ArgUtil;
 import riley.dev.util.Args;
-import riley.dev.util.Commands;
 import riley.dev.util.FilesUtil;
-@SuppressWarnings("unused")
 public class TimeTracker 
 {
     //TO DO: handle reporting 

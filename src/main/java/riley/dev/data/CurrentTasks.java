@@ -32,13 +32,15 @@ public class CurrentTasks
         {
             if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) stopTask(currentTask.getTaskName());
         }
-        // add the task to the map if it doesn't already exist
-        if(!currentTasks.containsKey(task.getTaskName()))
+        // if the passed task already exists, grab that instance, otherwise add the new instance to the map
+        if(currentTasks.containsKey(task.getTaskName()))
         {
-            currentTasks.put(task.getTaskName(), task);
+            task = currentTasks.get(task.getTaskName());
         }
+        else currentTasks.put(task.getTaskName(), task);
         // start the task
         task.setCurrentStart(Instant.now());
+        task.setStatus(TaskStatus.IN_PROGRESS);
     }
 
     public void stopTask(String taskName)
@@ -55,7 +57,14 @@ public class CurrentTasks
         currentTask.setStatus(TaskStatus.COMPLETE);
     }
 
-    public void reportTasks() { for(Task currentTask : currentTasks.values()) { System.out.println(currentTask); } }
+    public void reportTasks()
+    { 
+        for(Task currentTask : currentTasks.values()) 
+        {
+            if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) currentTask.updateElapsedTime();
+            System.out.println(currentTask);
+        } 
+    }
 
     public void reportCategories()
     {

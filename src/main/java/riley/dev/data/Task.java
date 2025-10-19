@@ -24,11 +24,11 @@ public class Task
         this.status = TaskStatus.IN_PROGRESS;
     }
     // constructor to be used when retrieving previously saved tasks from output file
-    public Task(String taskName, Category category, Duration totalElapsed, TaskStatus status)
+    public Task(String taskName, Category category, Instant currentStart, Duration totalElapsed, TaskStatus status)
     {
         this.taskName = taskName;
         this.category = category;
-        this.currentStart = Instant.now();
+        this.currentStart = currentStart;
         this.totalElapsed = totalElapsed;
         this.status = status;
     }
@@ -58,6 +58,15 @@ public class Task
         return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
+    // helper method to be called when the user wants a report of the tasks:
+    // total elapsed time for a task is only computed when a task is stopped, but we also want to view elapsed time for in progress tasks when a report is requested,
+    // so this method will be called when the user gives the report command
+    public void updateElapsedTime()
+    {
+        this.totalElapsed = this.totalElapsed.plus(Duration.between(this.currentStart, Instant.now()));
+        this.currentStart = Instant.now();
+    }
+
     @Override
     public String toString()
     {
@@ -74,6 +83,7 @@ public class Task
         return 
         this.taskName + "," +
         this.category + "," + 
+        this.currentStart + "," +
         this.totalElapsed + "," +
         this.status;
     }

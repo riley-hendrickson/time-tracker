@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -30,12 +31,13 @@ public class FilesUtil
         }
         Map<String, Task> taskMap = Files.lines(filepath)
                 .map(line -> line.split(","))
-                .filter(array -> array.length == 4)
+                .filter(array -> array.length == 5)
                 .map(array -> new Task(
                         array[0],
                         new Category(array[1]),
-                        array[2].equals("null") || array[2].equals("00:00:00") ? Duration.ZERO : Duration.parse(array[2]),
-                        TaskStatus.valueOf(array[3])
+                        Instant.parse(array[2]),
+                        array[3].equals("null") || array[3].equals("00:00:00") ? Duration.ZERO : Duration.parse(array[3]),
+                        TaskStatus.valueOf(array[4])
                 ))
                 .collect(Collectors.toMap(Task :: getTaskName, Function.identity()));
                 return new CurrentTasks(taskMap);
