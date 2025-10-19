@@ -37,6 +37,7 @@ public class Task
     public void setTaskName(String taskName) { this.taskName = taskName; }
 
     public Category getCategory() { return this.category; }
+    public String getCategoryName() { return this.category.getCategory(); }
     public void setCategory(Category category) { this.category = category; }
 
     public Instant getCurrentStart() { return currentStart; }

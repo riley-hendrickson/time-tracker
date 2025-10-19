@@ -4,6 +4,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import riley.dev.Log;
@@ -11,6 +12,7 @@ import riley.dev.Log;
 public class CurrentTasks 
 {
     private Map<String, Task> currentTasks = new HashMap<>();
+    private Map<String, Duration> categories = new HashMap<>();
 
     public Map<String, Task> getCurrentTasks() { return this.currentTasks; }
     public void setCurrentTasks(Map<String, Task> currentTasks) { this.currentTasks = currentTasks; }
@@ -70,8 +72,30 @@ public class CurrentTasks
     {
         for(Task currentTask : currentTasks.values())
         {
-
+            if(currentTask.getStatus() == TaskStatus.IN_PROGRESS) currentTask.updateElapsedTime();
+            if(categories.containsKey(currentTask.getCategoryName()))
+            {
+                categories.put(currentTask.getCategoryName(), categories.get(currentTask.getCategoryName()).plus(currentTask.getTotalElapsed()));
+            }
+            else
+            {
+                categories.put(currentTask.getCategoryName(), currentTask.getTotalElapsed());
+            }
         }
+        for(Entry<String, Duration> e : categories.entrySet())
+        {
+            System.out.println("Total Time Spent on Tasks in " + e.getKey() + " Category: " + formatDuration(e.getValue()));
+        }
+    }
+
+    // method to format duration in a more readable way than its toString method
+    private String formatDuration(Duration d)
+    {
+        if(d == null || d.isZero()) return "00:00:00";
+        long hours = d.toHours();
+        long minutes = d.minusHours(hours).toMinutes();
+        long seconds = d.minusHours(hours).minusMinutes(minutes).getSeconds();
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     @Override
