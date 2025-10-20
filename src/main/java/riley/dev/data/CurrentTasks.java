@@ -20,7 +20,8 @@ public class CurrentTasks
 
     public CurrentTasks()
     {
-        
+        this.currentTasks = new HashMap<>();
+        this.categories = new HashMap<>();
     }
 
     public CurrentTasks(Map<String, Task> taskMap)

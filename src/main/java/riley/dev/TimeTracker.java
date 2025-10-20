@@ -2,12 +2,9 @@ package riley.dev;
 
 import java.io.IOException;
 
-import riley.dev.data.Category;
-import riley.dev.data.CurrentTasks;
-import riley.dev.data.Task;
-import riley.dev.util.ArgUtil;
-import riley.dev.util.Args;
-import riley.dev.util.FilesUtil;
+import riley.dev.data.*;
+import riley.dev.util.*;
+
 public class TimeTracker 
 {
     public static void main(String[] args) 
