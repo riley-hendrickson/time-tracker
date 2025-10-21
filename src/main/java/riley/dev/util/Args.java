@@ -8,7 +8,7 @@ public class Args
 
     public Args(String[] args)
     {
-
+        
     }
 
     public Commands getCommand() 
