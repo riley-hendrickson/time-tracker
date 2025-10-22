@@ -1,16 +1,20 @@
 # Time Tracker App
 
 ## Overview:
-    CLI Application that logs and keeps track of tasks by an identifying task name, and an optional category. The program will log the total elapsed time spent on each task and maintains its current status. The user can start and stop tasks as they like and can generate reports on their status and the amount of time they've spent on them so far. 
+CLI Application that logs and keeps track of tasks by an identifying task name, and an optional category. The program will log the total elapsed time spent on each task and maintains its current status. The user can start and stop tasks as they like and can generate reports on their status and the amount of time they've spent on them so far. 
 
 ## Setup/Installation:
 1. Clone the repository via HTTPS/SSH
-    `git clone git@github.com:riley-hendrickson/time-tracker.git OR
-    git clone https://github.com/riley-hendrickson/time-tracker.git`
+
+    `git clone git@github.com:riley-hendrickson/time-tracker.git`
+    `git clone https://github.com/riley-hendrickson/time-tracker.git`
 2. Produce a runnable jar with Maven (recommended command):
+
     `mvn -q clean package`
 3. Run the program via the .jar file whose name includes -runner generated in the target directory
+
     Example Commands:
+    
     `java -jar /target/<name of runner jar file> start <task name>`
     `java -jar /target/<name of runner jar file> stop <task name>`
     `java -jar /target/<name of runner jar file> report tasks`
