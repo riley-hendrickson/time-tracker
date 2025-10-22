@@ -6,7 +6,7 @@
 
     <groupId>riley.dev</groupId>
     <artifactId>time-tracker</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -30,6 +30,30 @@
             <artifactId>maven-surefire-plugin</artifactId>
             <version>3.2.5</version>
         </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <configuration>
+                        <!-- write MAIN-CLASS into MANIFEST.MF -->
+                        <transformers>
+                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <mainClass>riley.dev.TimeTracker</mainClass>
+                        </transformer>
+                        </transformers>
+                        <!-- optional: customize final filename -->
+                        <finalName>${project.artifactId}-${project.version}-runner</finalName>
+                    </configuration>
+                    </execution>
+                </executions>
+    </plugin>
     </plugins>
     </build>
 

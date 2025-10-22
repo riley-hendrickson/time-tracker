@@ -71,8 +71,6 @@ public class CurrentTasksTest
         void testSimpleStop()
         {
             currentTasks.stopTask(task.getTaskName());
-            System.out.println(task);
-            System.out.println("Task start time: " + task.getCurrentStart());
             // assertNotEquals(Duration.ZERO, task.getTotalElapsed(), "Duration needs to be updated when a task is stopped");
             assertEquals(TaskStatus.COMPLETE, task.getStatus(), "Task status needs to be updated when a task is stopped");
         }
