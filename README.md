@@ -6,19 +6,18 @@ CLI Application that logs and keeps track of tasks by an identifying task name, 
 ## Setup/Installation:
 1. Clone the repository via HTTPS/SSH
 
-    `git clone git@github.com:riley-hendrickson/time-tracker.git`
+    `git clone git@github.com:riley-hendrickson/time-tracker.git`  
     `git clone https://github.com/riley-hendrickson/time-tracker.git`
 2. Produce a runnable jar with Maven (recommended command):
 
     `mvn -q clean package`
 3. Run the program via the .jar file whose name includes -runner generated in the target directory
 
-    Example Commands:
-    
-    `java -jar /target/<name of runner jar file> start <task name>`
-    `java -jar /target/<name of runner jar file> stop <task name>`
-    `java -jar /target/<name of runner jar file> report tasks`
-    `java -jar /target/<name of runner jar file> report category`
+    Example Commands:  
+    `java -jar /target/<name of runner jar file> start <task name>`  
+    `java -jar /target/<name of runner jar file> stop <task name>`  
+    `java -jar /target/<name of runner jar file> report tasks`  
+    `java -jar /target/<name of runner jar file> report category`  
 
 ## Usage
 
