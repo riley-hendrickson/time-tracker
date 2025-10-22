@@ -1,6 +1,6 @@
 # Time Tracker App
 
-## Overview:
+## Overview
 CLI Application that logs and keeps track of tasks by an identifying task name, and an optional category. The program will log the total elapsed time spent on each task and maintains its current status. The user can start and stop tasks as they like and can generate reports on their status and the amount of time they've spent on them so far. 
 
 ## Usage
